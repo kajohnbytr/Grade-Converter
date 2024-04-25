@@ -39,7 +39,7 @@ public class Main extends JFrame implements ActionListener {
 
             // Hide current frame
             setVisible(false);
-            dispose(); // Release resources
+            dispose(); 
 
             // Open new frame for entering subject names
             new SubjectNamesFrame(numSubjects);
