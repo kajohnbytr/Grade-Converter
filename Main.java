@@ -1,8 +1,10 @@
 import javax.swing.*;
+import java.awt.Font;
 import java.awt.event.*;
 
+
+
 public class Main extends JFrame implements ActionListener {
-    // Components
     private JTextField numSubjectsField;
     private JButton enterButton;
 
@@ -11,21 +13,25 @@ public class Main extends JFrame implements ActionListener {
         setSize(500, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
-        setResizable(false);
         setLocationRelativeTo(null);
+        setResizable(false);
 
         // Number of Subjects field
         JLabel numSubjectsLabel = new JLabel("How Many Subjects: ");
-        numSubjectsLabel.setBounds(20, 20, 150, 20);
+        numSubjectsLabel.setBounds(50, 150, 310, 40);
+        Font titleFont = new Font("Sans-Serif", Font.BOLD, 30);
+        numSubjectsLabel.setFont(titleFont);
         add(numSubjectsLabel);
 
         numSubjectsField = new JTextField();
-        numSubjectsField.setBounds(180, 20, 150, 20);
+        numSubjectsField.setBounds(350, 153, 50, 40);
+        Font fieldFont = new Font("Sans-Serif", Font.PLAIN, 24);
+        numSubjectsField.setFont(fieldFont);
         add(numSubjectsField);
 
         // Enter Button
         enterButton = new JButton("Enter");
-        enterButton.setBounds(120, 60, 150, 30);
+        enterButton.setBounds(190, 200, 100, 40);
         enterButton.addActionListener(this);
         add(enterButton);
 
@@ -39,7 +45,7 @@ public class Main extends JFrame implements ActionListener {
 
             // Hide current frame
             setVisible(false);
-            dispose(); 
+            dispose(); // Release resources
 
             // Open new frame for entering subject names
             new SubjectNamesFrame(numSubjects);
@@ -71,11 +77,15 @@ class SubjectNamesFrame extends JFrame implements ActionListener {
         subjectNameFields = new JTextField[numSubjects];
         for (int i = 0; i < numSubjects; i++) {
             JLabel subjectNameLabel = new JLabel("Name of Subject " + (i + 1) + ": ");
-            subjectNameLabel.setBounds(20, y, 150, 20);
+            subjectNameLabel.setBounds(20, y, 200, 30);
+            Font subnum = new Font("Sans-Serif", Font.BOLD, 20);
+            subjectNameLabel.setFont(subnum);
             add(subjectNameLabel);
 
             subjectNameFields[i] = new JTextField();
-            subjectNameFields[i].setBounds(180, y, 150, 20);
+            subjectNameFields[i].setBounds(350, y, 90, 30);
+            Font subname = new Font("Sans-Serif", Font.BOLD, 20);
+            subjectNameLabel.setFont(subname);
             add(subjectNameFields[i]);
 
             y += 40;
@@ -83,7 +93,7 @@ class SubjectNamesFrame extends JFrame implements ActionListener {
 
         // Continue Button
         continueButton = new JButton("Continue");
-        continueButton.setBounds(120, y, 150, 30);
+        continueButton.setBounds(170, y, 150, 30);
         continueButton.addActionListener(this);
         add(continueButton);
 
@@ -93,9 +103,8 @@ class SubjectNamesFrame extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == continueButton) {
-            // Hide current frame
             setVisible(false);
-            dispose(); // Release resources
+            dispose(); 
 
             // Open new frame for entering grades
             new GradesFrame(numSubjects, subjectNameFields);
@@ -141,7 +150,7 @@ class GradesFrame extends JFrame implements ActionListener {
 
         // Enter Button
         enterButton = new JButton("Enter");
-        enterButton.setBounds(120, y, 150, 30);
+        enterButton.setBounds(170, y,  150, 30);
         enterButton.addActionListener(this);
         add(enterButton);
 
@@ -215,7 +224,7 @@ public void actionPerformed(ActionEvent e) {
                 "Average converted grade for P2: " + (Double.isNaN(p2Average) ? "N/A" : p2Average) + "\n" +
                 "Average converted grade for P3: " + (Double.isNaN(p3Average) ? "N/A" : p3Average) + "\n" +
                 "GWA: " + gwa + "\n" +
-                "To pass the semester, you need to achieve an average grade of at least " + String.format("%.2f", remainingAverageNeeded) + " in the remaining assessments (P2 and/or P3).\n" +
+                "To pass the semester, you need to achieve an average grade of at least " + String.format("%.2f", remainingAverageNeeded) + " in the remaining assessments (P1, P2 and/or P3).\n" +
                 "Suggested Grade: " + String.format("%.2f", suggestedGrade));
         } else {
             // Output results
@@ -253,6 +262,11 @@ public void actionPerformed(ActionEvent e) {
         } else {
             return 0;
         }
+    }
+
+    // Sample P1 grade calculation ethod
+    public static double calculateSampleP1Grade(double p2Average, double p3Average) {
+        return (1.5 * 3) - p2Average - p3Average;
     }
 
     // Sample P2 grade calculation method
