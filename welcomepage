@@ -5,30 +5,28 @@ import javax.swing.*;
 public class welcomepage {
 
     public static void main(String[] args) {
-        LaunchPage launchPage = new LaunchPage();
+        new LaunchPage();
     }
 
     static class LaunchPage implements ActionListener {
         JFrame frame = new JFrame();
         JButton myButton = new JButton("Start");
-        JLabel label;
+        JLabel titleLabel;
 
         LaunchPage() {
-            try {
-               ImageIcon image = new ImageIcon("welcome.png");
-                image.setImage(image.getImage().getScaledInstance(400, 300, java.awt.Image.SCALE_SMOOTH));
-                label = new JLabel(image);
-                label.setBounds(40, 0, 400, 300);
-            } catch (Exception e) {
-                System.err.println("Error loading image: " + e.getMessage());
-            }
+            // Set the title text
+            titleLabel = new JLabel("Grade Converter and Calculator");
+            titleLabel.setBounds(50, 50, 400, 300);
 
-            myButton.setBounds(150, 280, 150, 40);
+            Font titleFont = new Font("Sans-Serif", Font.BOLD, 26);
+            titleLabel.setFont(titleFont);
+
+            myButton.setBounds(175, 280, 150, 40);
             myButton.setFocusable(false);
             myButton.addActionListener(this);
 
             frame.add(myButton);
-            frame.add(label);
+            frame.add(titleLabel); 
 
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLayout(null);
@@ -42,7 +40,7 @@ public class welcomepage {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == myButton) {
                 frame.dispose();
-                Main main = new Main();
+                 new Main();
             }
         }
     }
