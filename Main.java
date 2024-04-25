@@ -116,12 +116,7 @@ class GradesFrame extends JFrame implements ActionListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
         setLocationRelativeTo(null);
-        setResizable(false);
-        
-        JPanel panel = new JPanel();
-        panel.setLayout(null);
-        JScrollPane scrollPane = new JScrollPane(panel);
-        scrollPane.setBounds(0, 0, 485, 465);
+
 
         // Creating input fields for grades
         int y = 20;
