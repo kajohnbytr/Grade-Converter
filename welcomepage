@@ -16,27 +16,25 @@ public class welcomepage {
         LaunchPage() {
             try {
                ImageIcon image = new ImageIcon("welcome.png");
-                image.setImage(image.getImage().getScaledInstance(300, 300, java.awt.Image.SCALE_SMOOTH));
+                image.setImage(image.getImage().getScaledInstance(400, 300, java.awt.Image.SCALE_SMOOTH));
                 label = new JLabel(image);
-                // Set label position and size
-                label.setBounds(60, 20, 270, 215);
+                label.setBounds(40, 0, 400, 300);
             } catch (Exception e) {
                 System.err.println("Error loading image: " + e.getMessage());
             }
 
-            myButton.setBounds(125, 280, 150, 40);
+            myButton.setBounds(150, 280, 150, 40);
             myButton.setFocusable(false);
             myButton.addActionListener(this);
 
-            // Add components to frame
             frame.add(myButton);
             frame.add(label);
 
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setLayout(null);
-            frame.setSize(500, 500); // Set frame size
+            frame.setSize(500, 500);
             frame.setVisible(true);
-            frame.setLocationRelativeTo(null); // Center frame on screen
+            frame.setLocationRelativeTo(null);
             frame.setResizable(false);
         }
 
